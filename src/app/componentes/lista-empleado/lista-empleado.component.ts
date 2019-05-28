@@ -19,7 +19,9 @@ export class ListaEmpleadoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.empleados = this.empleadosService.getAllEmpleados();
+    this.empleadosService.getAllEmpleados().subscribe(
+      empleados => this.empleados = empleados
+    );
   }
 
   onSelect(empleado: Empleado) {
