@@ -2,6 +2,7 @@ import { MessagesMockService } from './../../servicios/messages-mock.service';
 import { Empleado } from './../../model/Empleado';
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosMockService } from 'src/app/servicios/empleados-mock.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-empleado',
@@ -14,7 +15,9 @@ export class ListaEmpleadoComponent implements OnInit {
 
     private empleados: Empleado[];
 
-    constructor(private empleadosService : EmpleadosMockService, private messagesMockService : MessagesMockService) {      
+    constructor(private empleadosService : EmpleadosMockService, 
+      private messagesMockService : MessagesMockService,
+      private router : Router) {      
     }
 
   ngOnInit() {
@@ -24,8 +27,9 @@ export class ListaEmpleadoComponent implements OnInit {
   }
 
   onSelect(empleado: Empleado) {
-    this.empleadoSeleccionado = empleado;
-    this.messagesMockService.add("Empleados seleccionado");
+    //this.empleadoSeleccionado = empleado;
+    //this.messagesMockService.add("Empleados seleccionado");
+    this.router.navigate(["/listaEmpleados/detalle/"+empleado.id]);
   }
 
   nuevoEmpleado() {
