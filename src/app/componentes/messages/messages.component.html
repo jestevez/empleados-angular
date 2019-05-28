@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let message of messagesMockService.getMessages()">
+     {{message}}
+  </li>
+</ul>
+
+<button [disabled]="messagesMockService.getMessages().length === 0"  type="button" (click)="onClear()">Clear</button>

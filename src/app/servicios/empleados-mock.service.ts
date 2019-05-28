@@ -1,7 +1,9 @@
+import { MessagesMockService } from 'src/app/servicios/messages-mock.service';
 import { Empleado } from './../model/Empleado';
 import { Injectable } from '@angular/core';
 import { EmpleadosIntService } from './empleados-int.service';
 import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,11 @@ export class EmpleadosMockService implements EmpleadosIntService {
       { id: 17, cif: '09879876O', nombre: 'Josune', apellidos: 'Goikoetxea', edad: 32 },
   ];
 
-  constructor() { }
+  constructor(private messagesMockService : MessagesMockService) { }
 
   getAllEmpleados():  Observable<Empleado[]>{
-    return of(this.empleados);
+    return of(this.empleados).pipe( // Encadenar respuesta luego de obtener el observable
+        tap( () => this.messagesMockService.add("("+this.empleados.length+") Empleados recuperados") )
+    );
   }
 }
