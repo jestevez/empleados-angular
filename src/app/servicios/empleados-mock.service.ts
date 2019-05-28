@@ -10,6 +10,7 @@ import { tap } from 'rxjs/operators';
 })
 export class EmpleadosMockService implements EmpleadosIntService {
 
+  private index = 18;
   private empleados: Empleado[] = [
     new Empleado(11, '32452435H', 'Juan', 'Ruíz', 23),
       { id: 12, cif: '23452348T', nombre: 'Narco', apellidos: 'Bollo', edad: 18 },
@@ -26,5 +27,11 @@ export class EmpleadosMockService implements EmpleadosIntService {
     return of(this.empleados).pipe( // Encadenar respuesta luego de obtener el observable
         tap( () => this.messagesMockService.add("("+this.empleados.length+") Empleados recuperados") )
     );
+  }
+
+  addEmpleado(newEmpleado: Empleado): Observable<Empleado> {
+    // Logica de guardar
+    newEmpleado.id = this.index++;
+    return of(newEmpleado);
   }
 }

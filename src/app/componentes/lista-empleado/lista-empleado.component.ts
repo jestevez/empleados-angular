@@ -14,10 +14,8 @@ export class ListaEmpleadoComponent implements OnInit {
 
     private empleados: Empleado[];
 
-  constructor(private empleadosService : EmpleadosMockService, private messagesMockService : MessagesMockService) { 
-
-    
-  }
+    constructor(private empleadosService : EmpleadosMockService, private messagesMockService : MessagesMockService) {      
+    }
 
   ngOnInit() {
     this.empleadosService.getAllEmpleados().subscribe(
@@ -30,4 +28,13 @@ export class ListaEmpleadoComponent implements OnInit {
     this.messagesMockService.add("Empleados seleccionado");
   }
 
+  nuevoEmpleado() {
+    this.empleadoSeleccionado = new Empleado();
+  }
+
+  onNuevoEmpleado(empleado : Empleado) {
+    this.empleadosService.addEmpleado(empleado).subscribe(
+      empleado => this.empleados.push(empleado)
+    ) ;
+  }
 }

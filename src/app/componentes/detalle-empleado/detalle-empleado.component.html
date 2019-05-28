@@ -6,5 +6,5 @@
   <div><label>nombre:  <input [(ngModel)]="empleado.nombre" placeholder="nombre"></label></div>
   <div><label>apellidos:  <input [(ngModel)]="empleado.apellidos" placeholder="apellidos"></label></div>
   <div><label>edad:  <input [(ngModel)]="empleado.edad" placeholder="edad"></label></div>
-  
+  <button [disabled]="empleado.id !== 0"  (click)="onGuardar()">Guardar</button>
 </div>

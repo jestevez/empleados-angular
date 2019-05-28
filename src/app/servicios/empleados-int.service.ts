@@ -3,4 +3,5 @@ import { Observable } from 'rxjs';
 
 export interface EmpleadosIntService {
     getAllEmpleados(): Observable<Empleado[]>;
+    addEmpleado(newEmpleado: Empleado): Observable<Empleado>;
 }

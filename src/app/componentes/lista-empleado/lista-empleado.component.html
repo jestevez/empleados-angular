@@ -1,3 +1,5 @@
+<button (click)="nuevoEmpleado()">Nuevo Empleados</button>
+
 <h2>Mis Empleados</h2>
 <ul class="empleados">
   <li *ngFor="let empleado of empleados" 
@@ -7,4 +9,6 @@
   </li>
 </ul>
 
-<app-detalle-empleado [empleado] = 'empleadoSeleccionado'></app-detalle-empleado>
+<app-detalle-empleado [empleado] = 'empleadoSeleccionado' 
+  (addEmpleado)="onNuevoEmpleado($event)" >
+</app-detalle-empleado>
