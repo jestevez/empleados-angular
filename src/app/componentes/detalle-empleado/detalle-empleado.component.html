@@ -1,0 +1,10 @@
+<div *ngIf="empleado">
+
+  <h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
+  <div><span>id:</span> {{empleado.id}}</div>
+  <div><label>cif: <input [(ngModel)]="empleado.cif" placeholder="cif"></label></div>
+  <div><label>nombre:  <input [(ngModel)]="empleado.nombre" placeholder="nombre"></label></div>
+  <div><label>apellidos:  <input [(ngModel)]="empleado.apellidos" placeholder="apellidos"></label></div>
+  <div><label>edad:  <input [(ngModel)]="empleado.edad" placeholder="edad"></label></div>
+  
+</div>
