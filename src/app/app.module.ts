@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [], // Apartir de Angular6 se usa el providerIn en cada servicio
   bootstrap: [AppComponent]
 })
 export class AppModule { }

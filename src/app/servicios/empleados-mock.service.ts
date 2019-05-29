@@ -34,4 +34,8 @@ export class EmpleadosMockService implements EmpleadosIntService {
     newEmpleado.id = this.index++;
     return of(newEmpleado);
   }
+
+  getEmpleado(id: number): Observable<Empleado> {
+    return of(this.empleados.find(empleado => id === empleado.id));
+  }
 }
