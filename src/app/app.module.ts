@@ -7,13 +7,15 @@ import { ListaEmpleadoComponent } from './componentes/lista-empleado/lista-emple
 import { DetalleEmpleadoComponent } from './componentes/detalle-empleado/detalle-empleado.component';
 import { MessagesComponent } from './componentes/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaEmpleadoComponent,
     DetalleEmpleadoComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

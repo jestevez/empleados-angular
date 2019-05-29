@@ -2,9 +2,10 @@ import { DetalleEmpleadoComponent } from './componentes/detalle-empleado/detalle
 import { ListaEmpleadoComponent } from './componentes/lista-empleado/lista-empleado.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/listaEmpleados', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'listaEmpleados', component: ListaEmpleadoComponent,
       children: [
         {
@@ -17,7 +18,7 @@ const routes: Routes = [
         }
       ]
     },
-    
+    { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({
