@@ -8,19 +8,29 @@ import { Subject, Observable } from 'rxjs';
 })
 export class DetallesEmpleadoService implements DetallesEmpleadoService{
   // Subject es un Observable dinamico, tiene el metodo next
-  private detallesEmpleadoSouce = new Subject<Empleado>();
+  private detallesEmpleadoSource = new Subject<Empleado>();
+  private nuevoEmpleadoSource = new Subject<Empleado>();
+
   // Observable encapsulado usado para que los escuchas se subscriban
-  private detalleEmpleado$ = this.detallesEmpleadoSouce.asObservable();
+  private detalleEmpleado$ = this.detallesEmpleadoSource.asObservable();
+  private nuevoEmpleado$ = this.nuevoEmpleadoSource.asObservable();
 
   constructor() { }
 
   actualizaDetallesEmpleadoSeleccionado(empleado: Empleado) {
-    this.detallesEmpleadoSouce.next(empleado);
+    this.detallesEmpleadoSource.next(empleado);
+  }
+
+  creaNuevoEmpleado(empleado: Empleado)  {
+    this.nuevoEmpleadoSource.next(empleado);
   }
 
   getObservableDetallesEmpleado() : Observable<Empleado>{
     return this.detalleEmpleado$;
   }
 
+  getObservableNuevoEmpleado() : Observable<Empleado>{
+    return this.nuevoEmpleado$;
+  }
 
 }

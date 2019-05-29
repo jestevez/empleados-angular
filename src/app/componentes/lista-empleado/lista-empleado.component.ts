@@ -29,10 +29,11 @@ export class ListaEmpleadoComponent implements OnInit {
       empleados => {
         this.empleados = empleados; 
         /*this.messagesMockService.add("Empleados retornados");*/
-
         // obtener el id del empleado desde el URL y seleccionarlo
         if(this.activatedRoute.snapshot.firstChild) {
+          
           const id = +this.activatedRoute.snapshot.firstChild.paramMap.get('id');
+          console.log("seleccionarElemento"+id);
           if(id > 0) {
             this.empleadoSeleccionado = this.empleados.find(empleado => id === empleado.id);
             /*this.empleadosService.getEmpleado(id).subscribe(
@@ -40,9 +41,24 @@ export class ListaEmpleadoComponent implements OnInit {
             );*/
           }
         }
+        
       }
     );
+
+    this.detallesEmpleadoService.getObservableNuevoEmpleado().subscribe(
+      empleado => this.empleadosService.addEmpleado(empleado).subscribe(
+        empleado => {
+          this.empleados.push(empleado); 
+          this.router.navigate(["/listaEmpleados/detalle/"+empleado.id]); 
+          
+          // TODO Marcar seleccionado
+          
+        }
+      )
+    )
   }
+
+
 
   onSelect(empleado: Empleado) {
     this.empleadoSeleccionado = empleado;
@@ -52,12 +68,13 @@ export class ListaEmpleadoComponent implements OnInit {
   }
 
   nuevoEmpleado() {
-    this.empleadoSeleccionado = new Empleado();
+    //console.log("nuevoEmpleado");
+    this.router.navigate(["/listaEmpleados/nuevoEmpleado/"]);
   }
 
-  onNuevoEmpleado(empleado : Empleado) {
+  /* onNuevoEmpleado(empleado : Empleado) {
     this.empleadosService.addEmpleado(empleado).subscribe(
       empleado => this.empleados.push(empleado)
     ) ;
-  }
+  }*/
 }
