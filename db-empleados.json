@@ -1,0 +1,52 @@
+{
+  "empleados": [
+      {
+          "id": 1,
+          "cif": "23452435T",
+          "nombre": "Nemo",
+          "apellidos": "Payaso",
+          "edad": 18
+      },
+      {
+          "id": 2,
+          "cif": "23453453Y",
+          "nombre": "Isabel",
+          "apellidos": "Fuentes",
+          "edad": 33
+      },
+      {
+          "id": 3,
+          "cif": "123412343E",
+          "nombre": "Fernando",
+          "apellidos": "Alonso",
+          "edad": 21
+      },
+      {
+          "id": 4,
+          "cif": "12343255Q",
+          "nombre": "Pau",
+          "apellidos": "Gasol",
+          "edad": 53
+      },
+      {
+          "id": 5,
+          "cif": "76534565W",
+          "nombre": "Miguel",
+          "apellidos": "Delibes",
+          "edad": 85
+      },
+      {
+          "id": 6,
+          "cif": "56756743H",
+          "nombre": "Hakuri",
+          "apellidos": "Murakami",
+          "edad": 43
+      }
+  ],
+  "empresa": [
+    {
+      "id": 1,
+      "nombre": "Hakuri"
+    }
+  ]
+}
