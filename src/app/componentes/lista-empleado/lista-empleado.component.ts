@@ -25,6 +25,52 @@ export class ListaEmpleadoComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.loadEmpleados();
+
+    this.detallesEmpleadoService.getObservableEliminarEmpleado().subscribe(
+      empleado => {
+        console.log("delete "+ empleado);
+        this.empleadosService.deleteEmpleado(empleado.id).subscribe(
+          empleado => {this.loadEmpleados();}
+        );
+      }
+    );
+    
+
+    this.detallesEmpleadoService.getObservableNuevoEmpleado().subscribe(
+      
+      
+
+      empleado => {
+        console.log("getObservableNuevoEmpleado "+empleado);
+        if(empleado.id > 0) {
+            this.empleadosService.updateEmpleado(empleado).subscribe(
+              empleado => {
+                this.loadEmpleados();
+                this.router.navigate(["/listaEmpleados/detalle/"+empleado.id]); 
+                // TODO Marcar seleccionado                
+              }
+            );
+        }
+        else {
+          this.empleadosService.addEmpleado(empleado).subscribe(
+            empleado => {
+              this.loadEmpleados();
+              this.router.navigate(["/listaEmpleados/detalle/"+empleado.id]); 
+              // TODO Marcar seleccionado
+              
+            }
+          );
+        }
+
+        
+      }
+    )
+  }
+
+
+  
+  private loadEmpleados() {
     this.empleadosService.getAllEmpleados().subscribe(
       empleados => {
         this.empleados = empleados; 
@@ -45,19 +91,7 @@ export class ListaEmpleadoComponent implements OnInit {
       }
     );
 
-    this.detallesEmpleadoService.getObservableNuevoEmpleado().subscribe(
-      empleado => this.empleadosService.addEmpleado(empleado).subscribe(
-        empleado => {
-          this.empleados.push(empleado); 
-          this.router.navigate(["/listaEmpleados/detalle/"+empleado.id]); 
-          
-          // TODO Marcar seleccionado
-          
-        }
-      )
-    )
   }
-
 
 
   onSelect(empleado: Empleado) {
@@ -65,6 +99,11 @@ export class ListaEmpleadoComponent implements OnInit {
     //this.messagesMockService.add("Empleados seleccionado");
     this.router.navigate(["/listaEmpleados/detalle/"+empleado.id]);
     this.detallesEmpleadoService.actualizaDetallesEmpleadoSeleccionado(empleado);
+  }
+
+  onEliminar(empleado) {
+    console.log("onEliminar " +empleado);
+    this.detallesEmpleadoService.eliminarEmpleado(empleado);
   }
 
   nuevoEmpleado() {

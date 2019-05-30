@@ -2,11 +2,47 @@
 
   <h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
   <div><span>id:</span> {{empleado.id}}</div>
-  <div><label>cif: <input [(ngModel)]="empleado.cif" placeholder="cif"></label></div>
-  <div><label>nombre:  <input [(ngModel)]="empleado.nombre" placeholder="nombre"></label></div>
-  <div><label>apellidos:  <input [(ngModel)]="empleado.apellidos" placeholder="apellidos"></label></div>
-  <div><label>edad:  <input [(ngModel)]="empleado.edad" placeholder="edad"></label></div>
+<form #empleadoForm="ngForm">
+  <div><label>cif: <input [(ngModel)]="empleado.cif" placeholder="cif" name="cif"
+      #cif="ngModel" pattern="\d{8}[A-Z]" required></label></div>
+      <div *ngIf="cif.invalid && (cif.dirty || cif.touched)" class="alert">
+        <div *ngIf="cif.errors.required">
+          El cif es obligatorio.
+        </div>
+        <div *ngIf="cif.errors.pattern">
+          El cif debe estar compuesto de 8 números y una letra mayúscula.
+        </div>
+      </div>
+    
+  <div><label>nombre:  <input [(ngModel)]="empleado.nombre" 
+    #nombre="ngModel" name="nombre" required placeholder="nombre"></label></div>
 
-  <button [disabled]="empleado.id !== 0"  (click)="onGuardar()">Guardar</button>
-  <button [disabled]="empleado.id === 0"  (click)="onActualizar()">Actualizar</button>
+    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert">
+      <div *ngIf="nombre.errors.required">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+
+  <div><label>apellidos:  <input [(ngModel)]="empleado.apellidos" 
+    #apellidos="ngModel" name="apellidos" required placeholder="apellidos"></label></div>
+ 
+    <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)" class="alert">
+      <div *ngIf="apellidos.errors.required">
+        Los apellidos es obligatorio.
+      </div>
+    </div>
+
+ 
+  <div><label>edad:  <input [(ngModel)]="empleado.edad" 
+    #edad="ngModel" required name="text" type="number" placeholder="edad" [range]="[18, 65]"></label></div>
+  
+    <div *ngIf="edad.invalid && (edad.dirty || edad.touched)" class="alert">
+    <p class="alert" *ngIf="edad.errors?.range">La edad debe estar comprendida entre 18 y 65 años</p>
+    </div>
+
+  <button [disabled]="!empleadoForm.valid"  (click)="onGuardar()">Guardar</button>
+
+
+</form>
 </div>

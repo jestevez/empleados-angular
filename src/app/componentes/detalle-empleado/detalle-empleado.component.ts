@@ -67,7 +67,4 @@ export class DetalleEmpleadoComponent implements OnInit {
     
   }
 
-  onActualizar() {
-    console.log("onActualizar");
-  }
 }

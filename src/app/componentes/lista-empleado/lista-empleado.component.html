@@ -6,6 +6,7 @@
   (click)="onSelect(empleado)"  [class.selected]="empleado === empleadoSeleccionado">
     <span class="badge">{{empleado.cif}}</span> {{empleado.nombre}} {{empleado.apellidos}}
      - {{empleado.edad}}
+     <button style="float: right;" (click)="onEliminar(empleado)">X</button>
   </li>
 </ul>
 
