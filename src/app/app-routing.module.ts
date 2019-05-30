@@ -18,7 +18,18 @@ const routes: Routes = [
         }
       ]
     },
-    { path: 'dashboard', component: DashboardComponent }
+    { path: 'dashboard', component: DashboardComponent,
+        children: [
+          {
+            path: 'detalle/:id',
+            component: DetalleEmpleadoComponent
+          },
+          {
+            path: 'nuevoEmpleado', 
+            component: DetalleEmpleadoComponent 
+          }
+        ]
+      },
 ];
 
 @NgModule({

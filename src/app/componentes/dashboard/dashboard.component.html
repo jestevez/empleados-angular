@@ -1,12 +1,13 @@
-<p>
-  dashboard works!
-</p>
-<!--
-<div class="grid grid-pad">
-  <a *ngFor="..." class="col-1-4" ...>
-      <div class="module empleado">
-          <h4>...</h4>
-      </div>
-  </a>
+
+<button  (click)="onBack()" >back</button>
+<button  (click)="onNext()" >next</button>
+ <div class="grid grid-pad">
+    <a  *ngFor="let empleado of empleados" class="col-1-4" 
+        routerLink="/dashboard/detalle/{{empleado.id}}">
+        <div class="module empleado">
+            <h4> {{empleado.nombre}} </h4>
+        </div>
+    </a>
 </div>
--->
+
+<router-outlet></router-outlet>
