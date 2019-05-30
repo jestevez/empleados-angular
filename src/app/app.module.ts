@@ -8,6 +8,7 @@ import { DetalleEmpleadoComponent } from './componentes/detalle-empleado/detalle
 import { MessagesComponent } from './componentes/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from './componentes/dashboard/dashboard.component'
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [], // Apartir de Angular6 se usa el providerIn en cada servicio
   bootstrap: [AppComponent]

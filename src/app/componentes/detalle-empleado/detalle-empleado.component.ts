@@ -1,10 +1,9 @@
+import { EmpleadosAdapterService } from './../../servicios/empleados-adapter.service';
 import { DetallesEmpleadoService } from './../../servicios/detalles-empleado.service';
-import { EmpleadosMockService } from 'src/app/servicios/empleados-mock.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Empleado } from 'src/app/model/Empleado';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { CompileMetadataResolver } from '@angular/compiler';
 
 
 @Component({
@@ -21,7 +20,7 @@ export class DetalleEmpleadoComponent implements OnInit {
 
   constructor(private route :ActivatedRoute,
         private location : Location,
-        private empleadosMockService: EmpleadosMockService,
+        private empleadosService: EmpleadosAdapterService,
         private detallesEmpleadoService: DetallesEmpleadoService) {
       
   }
@@ -56,7 +55,7 @@ export class DetalleEmpleadoComponent implements OnInit {
     // Lo recuperamos ya que el evento de actualizaDetallesEmpleadoSeleccionado se lanza antes que nos susbribamos
     const id = +this.route.snapshot.paramMap.get('id');
     console.log("getEmpleadoFromService " +id);
-    this.empleadosMockService.getEmpleado(id).subscribe(
+    this.empleadosService.getEmpleado(id).subscribe(
       empleado => this.empleado = empleado
     );
   }
@@ -66,5 +65,9 @@ export class DetalleEmpleadoComponent implements OnInit {
     //this.addEmpleado.emit(this.empleado);
     this.detallesEmpleadoService.creaNuevoEmpleado(this.empleado);
     
+  }
+
+  onActualizar() {
+    console.log("onActualizar");
   }
 }

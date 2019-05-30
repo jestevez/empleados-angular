@@ -1,8 +1,8 @@
+import { EmpleadosAdapterService } from './../../servicios/empleados-adapter.service';
 import { DetallesEmpleadoService } from './../../servicios/detalles-empleado.service';
 import { MessagesMockService } from './../../servicios/messages-mock.service';
 import { Empleado } from './../../model/Empleado';
 import { Component, OnInit } from '@angular/core';
-import { EmpleadosMockService } from 'src/app/servicios/empleados-mock.service';
 import { Router, ParamMap } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   private ending = 4;
 
   private max = 0;
-  constructor(private empleadosService : EmpleadosMockService, 
+  constructor(private empleadosService : EmpleadosAdapterService, 
     private detallesEmpleadoService : DetallesEmpleadoService,
     private messagesMockService : MessagesMockService,
     private router : Router,

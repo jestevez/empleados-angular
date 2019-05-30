@@ -10,6 +10,7 @@ import { tap } from 'rxjs/operators';
 })
 export class EmpleadosMockService implements EmpleadosIntService {
 
+
   private index = 18;
   private empleados: Empleado[] = [
     new Empleado(11, '32452435H', 'Juan', 'Ruíz', 23),
@@ -39,5 +40,12 @@ export class EmpleadosMockService implements EmpleadosIntService {
 
   getEmpleado(id: number): Observable<Empleado> {
     return of(this.empleados.find(empleado => id === empleado.id));
+  }  
+  
+  updateEmpleado(newEmpleado: Empleado): Observable<Empleado> {
+    throw new Error("Method not implemented.");
+  }
+  deleteEmpleado(id: number): Observable<Empleado> {
+    throw new Error("Method not implemented.");
   }
 }

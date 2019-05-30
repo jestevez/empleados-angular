@@ -1,8 +1,8 @@
+import { EmpleadosRestService } from './../../servicios/empleados-rest.service';
 import { DetallesEmpleadoService } from './../../servicios/detalles-empleado.service';
 import { MessagesMockService } from './../../servicios/messages-mock.service';
 import { Empleado } from './../../model/Empleado';
 import { Component, OnInit } from '@angular/core';
-import { EmpleadosMockService } from 'src/app/servicios/empleados-mock.service';
 import { Router, ParamMap } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class ListaEmpleadoComponent implements OnInit {
 
     private empleados: Empleado[];
 
-    constructor(private empleadosService : EmpleadosMockService, 
+    constructor(private empleadosService : EmpleadosRestService, 
       private detallesEmpleadoService : DetallesEmpleadoService,
       private messagesMockService : MessagesMockService,
       private router : Router,
