@@ -32,7 +32,9 @@ export class EmpleadosMockService implements EmpleadosIntService {
   addEmpleado(newEmpleado: Empleado): Observable<Empleado> {
     // Logica de guardar
     newEmpleado.id = this.index++;
-    return of(newEmpleado);
+    return of(newEmpleado).pipe(
+      tap( () => this.messagesMockService.add("Se ha creado el empleado con id "+newEmpleado.id+" ") )
+  );
   }
 
   getEmpleado(id: number): Observable<Empleado> {
